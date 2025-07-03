@@ -7,7 +7,7 @@ function App() {
   const [title, newTitle] = useState('')
   const [author, newAuthor] = useState('')
   const [pages, newPages] = useState('')
-  const [read, newRead] = useState(false)
+  const [read, newRead] = useState('')
 
   const bookForm = React.createRef()
 
@@ -22,6 +22,10 @@ function App() {
     }
     setBooks(books.concat(book))
     bookForm.current.style.display = 'none'
+    newTitle('')
+    newAuthor('')
+    newPages('')
+    newRead('')
   }
 
   const titleOnChange = (event) => (
@@ -48,21 +52,21 @@ function App() {
         <button type="button" onClick={addBookButton} className='border-2 border-amber-50 border-solid text-xl p-2 rounded hover:cursor-pointer hover:-translate-y-1 transition-transform ease-linear duration-200 bg-amber-50 text-cyan-950'>Add Book</button>
       </div>
       <BooksList allBooks={books} />
-      <div>
-        <form onSubmit={bookOnSubmit} className='flex-col gap-3 hidden' ref={bookForm}>
-          <div className='flex gap-2 text-xl items-center'>
-            Title: <Input value={title} onChange={titleOnChange}/>
+      <div className='fixed z-10 translate-y-80 translate-x-190'>
+        <form onSubmit={bookOnSubmit} className='flex-col gap-8 hidden bg-cyan-950 text-amber-50 p-15 rounded-xl' ref={bookForm}>
+          <div className='flex gap-8 text-2xl items-center'>
+            <p>Title:</p> <Input value={title} onChange={titleOnChange}/>
           </div>
-          <div className='flex gap-2 text-xl items-center'>
-            Author: <Input value={author} onChange={authorOnChange}/>
+          <div className='flex gap-2 text-2xl items-center'>
+            <p>Author:</p> <Input value={author} onChange={authorOnChange}/>
           </div>
-          <div className='flex gap-2 text-xl items-center'>
-            Pages: <Input value={pages} onChange={pagesOnChange}/>
+          <div className='flex gap-5 text-2xl items-center'>
+            <p>Pages:</p> <Input value={pages} onChange={pagesOnChange}/>
           </div>
-          <div className='flex gap-2 text-xl items-center'>
-            Read: <Input value={read} onChange={readOnChange}></Input>
+          <div className='flex gap-7 text-2xl items-center'>
+            <p>Read:</p> <Input value={read} onChange={readOnChange}></Input>
           </div>
-          <button type="submit" className='border-2 border-black border-solid text-xl p-1'>Submit</button>
+          <button type="submit" className='bg-amber-50 text-cyan-950 text-xl p-2 rounded hover:cursor-pointer hover:-translate-y-1 transition-transform ease-linear duration-200'>Submit</button>
         </form>
       </div>
     </div>
