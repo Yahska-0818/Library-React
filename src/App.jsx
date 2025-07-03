@@ -49,9 +49,9 @@ function App() {
     <div className='flex flex-col gap-2'>
       <div className='flex justify-between bg-cyan-950 py-5 px-50 text-amber-50 items-center'>
         <p className='text-2xl'>Your Library</p>
-        <button type="button" onClick={addBookButton} className='border-2 border-amber-50 border-solid text-xl p-2 rounded hover:cursor-pointer hover:-translate-y-1 transition-transform ease-linear duration-200 bg-amber-50 text-cyan-950'>Add Book</button>
+        <button type="button" onClick={addBookButton} className='text-xl p-2 rounded hover:cursor-pointer hover:-translate-y-1 transition-transform ease-linear duration-200 bg-amber-50 text-cyan-950'>Add Book</button>
       </div>
-      <BooksList allBooks={books} />
+      <BooksList allBooks={books} setAllBooks={setBooks} />
       <div className='fixed z-10 translate-y-80 translate-x-190'>
         <form onSubmit={bookOnSubmit} className='flex-col gap-8 hidden bg-cyan-950 text-amber-50 p-15 rounded-xl' ref={bookForm}>
           <div className='flex gap-8 text-2xl items-center'>
