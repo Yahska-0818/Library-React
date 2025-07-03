@@ -1,8 +1,8 @@
 const BooksList = ({allBooks}) => {
     return (
-        <ul>
+        <ul className="flex flex-wrap gap-2 mx-2 justify-evenly">
             {allBooks.map(book=>
-                <li key={book.id}>
+                <li key={book.id} className="bg-cyan-950 text-amber-50 p-5 rounded text-xl">
                     <p>Title: {book.title}</p>
                     <p>Author: {book.author}</p>
                     <p>Pages: {book.pages}</p>

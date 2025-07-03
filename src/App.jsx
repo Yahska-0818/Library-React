@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import React, { useState } from 'react'
 import BooksList from './components/BooksList'
 import Input from './components/Input'
 
@@ -8,6 +8,8 @@ function App() {
   const [author, newAuthor] = useState('')
   const [pages, newPages] = useState('')
   const [read, newRead] = useState(false)
+
+  const bookForm = React.createRef()
 
   const bookOnSubmit = () => {
     event.preventDefault()
@@ -19,6 +21,7 @@ function App() {
       id: self.crypto.randomUUID()
     }
     setBooks(books.concat(book))
+    bookForm.current.style.display = 'none'
   }
 
   const titleOnChange = (event) => (
@@ -34,24 +37,34 @@ function App() {
     newRead(event.target.value)
   )
 
+  const addBookButton = () => {
+    bookForm.current.style.display = 'flex'
+  }
+
   return (
-    <div className='m-3'>
-      <form onSubmit={bookOnSubmit} className='flex flex-col gap-3'>
-        <div className='flex gap-2 text-xl items-center'>
-          Title: <Input value={title} onChange={titleOnChange}/>
-        </div>
-        <div className='flex gap-2 text-xl items-center'>
-          Author: <Input value={author} onChange={authorOnChange}/>
-        </div>
-        <div className='flex gap-2 text-xl items-center'>
-          Pages: <Input value={pages} onChange={pagesOnChange}/>
-        </div>
-        <div className='flex gap-2 text-xl items-center'>
-          Read: <Input value={read} onChange={readOnChange}></Input>
-        </div>
-        <button type="submit" className='border-2 border-black border-solid text-xl p-1'>Submit</button>
-      </form>
+    <div className='flex flex-col gap-2'>
+      <div className='flex justify-between bg-cyan-950 py-5 px-50 text-amber-50 items-center'>
+        <p className='text-2xl'>Your Library</p>
+        <button type="button" onClick={addBookButton} className='border-2 border-amber-50 border-solid text-xl p-2 rounded hover:cursor-pointer hover:-translate-y-1 transition-transform ease-linear duration-200 bg-amber-50 text-cyan-950'>Add Book</button>
+      </div>
       <BooksList allBooks={books} />
+      <div>
+        <form onSubmit={bookOnSubmit} className='flex-col gap-3 hidden' ref={bookForm}>
+          <div className='flex gap-2 text-xl items-center'>
+            Title: <Input value={title} onChange={titleOnChange}/>
+          </div>
+          <div className='flex gap-2 text-xl items-center'>
+            Author: <Input value={author} onChange={authorOnChange}/>
+          </div>
+          <div className='flex gap-2 text-xl items-center'>
+            Pages: <Input value={pages} onChange={pagesOnChange}/>
+          </div>
+          <div className='flex gap-2 text-xl items-center'>
+            Read: <Input value={read} onChange={readOnChange}></Input>
+          </div>
+          <button type="submit" className='border-2 border-black border-solid text-xl p-1'>Submit</button>
+        </form>
+      </div>
     </div>
   )
 }
