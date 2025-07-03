@@ -52,7 +52,7 @@ function App() {
         <button type="button" onClick={addBookButton} className='text-xl p-2 rounded hover:cursor-pointer hover:-translate-y-1 transition-transform ease-linear duration-200 bg-amber-50 text-cyan-950'>Add Book</button>
       </div>
       <BooksList allBooks={books} setAllBooks={setBooks} />
-      <div className='fixed z-10 translate-y-80 translate-x-190'>
+      <div className='z-10 fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2'>
         <form onSubmit={bookOnSubmit} className='flex-col gap-8 hidden bg-cyan-950 text-amber-50 p-15 rounded-xl' ref={bookForm}>
           <div className='flex gap-8 text-2xl items-center'>
             <p>Title:</p> <Input value={title} onChange={titleOnChange}/>
