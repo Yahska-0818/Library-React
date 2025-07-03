@@ -17,7 +17,7 @@ function App() {
       title: title,
       author: author,
       pages: pages,
-      read: read,
+      read: read === "read"? true : false,
       id: self.crypto.randomUUID()
     }
     setBooks(books.concat(book))
@@ -64,8 +64,12 @@ function App() {
             <p>Pages:</p> <Input value={pages} onChange={pagesOnChange}/>
           </div>
           <div className='flex gap-7 text-2xl items-center'>
-            <p>Read:</p> <Input value={read} onChange={readOnChange}></Input>
+            <label htmlFor="read">Read</label>
+            <input type="radio" id="read" name="readStatus" value="read" checked={read === "read"} onChange={readOnChange} required className='w-5 h-5'/>
+            <label htmlFor="notRead">Unread</label>
+            <input type="radio" id="unRead" name="readStatus" value="unRead" checked={read === "unRead"} onChange={readOnChange} required className='w-5 h-5'/>
           </div>
+
           <button type="submit" className='bg-amber-50 text-cyan-950 text-xl p-2 rounded hover:cursor-pointer hover:-translate-y-1 transition-transform ease-linear duration-200'>Submit</button>
         </form>
       </div>
