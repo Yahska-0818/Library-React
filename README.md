@@ -1,4 +1,4 @@
 # React + Vite
 
-This is the Library project from The Odin Project which was originally in vanilla Javascript.
-I've converted it to a react app as a way to practice my react skills.
+This is the Library project from The Odin Project, originally made for practicing Javascript.
+I've recreated it using React+Tailwind
